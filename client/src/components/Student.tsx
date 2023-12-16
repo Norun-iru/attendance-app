@@ -21,8 +21,8 @@ const Student: React.FC = () => {
       .then((response) => {
         console.log(response.data);
         toast({
-          title: 'Status Updated',
-          description: `Student with Number ${scannedNumber} is marked as present.`,
+          title: '出席',
+          description: `学籍番号 ${scannedNumber} の学生を出席にしました．`,
           status: 'success',
           duration: 3000,
           isClosable: true,
@@ -32,7 +32,7 @@ const Student: React.FC = () => {
         console.error(error);
         toast({
           title: 'Error',
-          description: 'Failed to update student status.',
+          description: '学生の出席情報を更新できませんでした．',
           status: 'error',
           duration: 3000,
           isClosable: true,
@@ -41,11 +41,11 @@ const Student: React.FC = () => {
   };
 
   return (
-    <div>
-      <Heading color='#ececec' fontSize={100} margin={3} marginLeft={10}>
-        BarCode
-      </Heading>
-      <Box marginLeft={10}>
+    <Box margin={10}>
+      <Heading color='#1B254A' fontSize={50} mb={10}>
+            Barcode Reader
+          </Heading>
+      <Box >
         <Card maxW='50%'>
           <CardBody>
             <BarCode onReadCode={handleReadCode} />
@@ -55,7 +55,7 @@ const Student: React.FC = () => {
           </CardFooter>
         </Card>
       </Box>
-    </div>
+    </Box>
   );
 };
 

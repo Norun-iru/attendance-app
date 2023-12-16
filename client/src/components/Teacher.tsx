@@ -19,9 +19,12 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Flex,
+  Box,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
+import { SideBar } from './SideBar';
 
 interface Category {
   ID: number;
@@ -118,64 +121,70 @@ const Teacher: React.FC = () => {
   });
 
   return (
-    <div>
-      <Heading color='#ececec' fontSize={100} margin={3} marginLeft={10}>
-        {id}
-      </Heading>
+    <Flex>
+      <SideBar />
 
-      <TableContainer marginLeft={10} marginRight={10}>
-        <Table variant='simple'>
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>Number</Th>
-              <Th>Name</Th>
-              <Th>Status</Th>
-              <Th>Action</Th>
-            </Tr>
-          </Thead>
-          {data2}
-        </Table>
-      </TableContainer>
-      <Button variant='outline' margin={10} onClick={openModal}>
-        学生追加
-      </Button>
+      <Box ml="250px" p={10} flex="1">
+        <Box margin={10}>
+          <Heading color='#1B254A' fontSize={50} mb={10}>
+            {id}
+          </Heading>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>学生追加</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl>
-              <FormLabel>学籍番号</FormLabel>
-              <Input
-                type='number'
-                name='Number'
-                value={newStudentData.Number}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-            <FormControl mt={4}>
-              <FormLabel>名前</FormLabel>
-              <Input
-                type='text'
-                name='Name'
-                value={newStudentData.Name}
-                onChange={handleInputChange}
-              />
-            </FormControl>
-          </ModalBody>
+          <TableContainer>
+            <Table variant='simple'>
+              <Thead>
+                <Tr>
+                  <Th>ID</Th>
+                  <Th>Number</Th>
+                  <Th>Name</Th>
+                  <Th>Status</Th>
+                  <Th>Action</Th>
+                </Tr>
+              </Thead>
+              {data2}
+            </Table>
+          </TableContainer>
+          <Button variant='outline' marginTop={10} onClick={openModal}>
+            学生追加
+          </Button>
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={addStudent}>
-              保存
-            </Button>
-            <Button onClick={closeModal}>閉じる</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </div>
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>学生追加</ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>
+                <FormControl>
+                  <FormLabel>学籍番号</FormLabel>
+                  <Input
+                    type='number'
+                    name='Number'
+                    value={newStudentData.Number}
+                    onChange={handleInputChange}
+                  />
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>名前</FormLabel>
+                  <Input
+                    type='text'
+                    name='Name'
+                    value={newStudentData.Name}
+                    onChange={handleInputChange}
+                  />
+                </FormControl>
+              </ModalBody>
+
+              <ModalFooter>
+                <Button colorScheme='blue' mr={3} onClick={addStudent}>
+                  保存
+                </Button>
+                <Button onClick={closeModal}>閉じる</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Box>
+      </Box>
+    </Flex>
   );
 };
 

@@ -8,6 +8,7 @@ import Student from './components/Student';
 import SelectTime from './components/SelectTime';
 import SelectSubject from './components/SelectSubject';
 import StudentData from './components/StudentData';
+import TimeTable from './components/TimeTable';
 
 function App(): JSX.Element {
   return (
@@ -17,6 +18,7 @@ function App(): JSX.Element {
           <Route path="/" element={<Start />} />
           <Route path="/SelectTime" element={<SelectTime />} />
           <Route path="/StudentData" element={<StudentData />} />
+          <Route path="/TimeTable" element={<TimeTable />} />
           <Route path="/SelectSubject/:week/:day" element={<SelectSubject />} />
           <Route path="/Select" element={<Select />} />
           <Route path="/Student/:subject" element={<Student />} />

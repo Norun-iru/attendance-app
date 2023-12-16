@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, HStack, Button, Box, Heading } from '@chakra-ui/react';
+import { FormControl, FormLabel, HStack, Button, Box, Heading, Flex, Card, CardBody } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom";
+import { SideBar } from './SideBar';
 
 const SelectTime: React.FC = () => {
     const [selectedWeek, setSelectedWeek] = useState<number | null>(null);
@@ -42,49 +43,66 @@ const SelectTime: React.FC = () => {
     };
 
     return (
-        <div>
-            <Heading color='#ececec' fontSize={100} margin={3} marginLeft={10}>
-                日時
-            </Heading>
-            <Box margin={5} marginLeft={10}>
+        <Flex>
+            {/*Side Bar*/}
+            <SideBar />
 
-                <FormControl>
-                    <FormLabel>週</FormLabel>
-                    <HStack>
-                        {weeks.map((week) => (
-                            <Button
-                                key={week}
-                                colorScheme={selectedWeek === week ? 'teal' : 'gray'}
-                                onClick={() => handleWeekSelect(week)}
-                            >
-                                {week}
-                            </Button>
-                        ))}
+            <Box ml="250px" p={10} flex="1">
+
+                <Box margin={10}>
+                    <Heading color='#1B254A' fontSize={50} mb={10}>
+                        Week&Day
+                    </Heading>
+
+                    <Card>
+                        <CardBody>
+                            <FormControl>
+                                <FormLabel fontSize={20}>週</FormLabel>
+                                <HStack>
+                                    {weeks.map((week) => (
+                                        <Button
+                                            key={week}
+                                            colorScheme={selectedWeek === week ? 'teal' : 'gray'}
+                                            onClick={() => handleWeekSelect(week)}
+                                        >
+                                            {week}
+                                        </Button>
+                                    ))}
+                                </HStack>
+                            </FormControl>
+                        </CardBody>
+
+                    </Card>
+
+                    <Card marginTop={10}>
+                        <CardBody>
+                            <FormControl>
+                                <FormLabel fontSize={20}>曜日</FormLabel>
+                                <HStack>
+                                    {daysOfWeek.map((day) => (
+                                        <Button
+                                            key={day}
+                                            colorScheme={selectedDay === day ? 'teal' : 'gray'}
+                                            onClick={() => handleDaySelect(day)}
+                                        >
+                                            {dayJPN(day)}
+                                        </Button>
+                                    ))}
+                                </HStack>
+                            </FormControl>
+                        </CardBody>
+                    </Card>
+
+
+                    <HStack mt={14}>
+                        <Button colorScheme='blue' onClick={handleNext}>
+                            Next
+                        </Button>
                     </HStack>
-                </FormControl>
+                </Box>
 
-                <FormControl mt={4}>
-                    <FormLabel>曜日</FormLabel>
-                    <HStack>
-                        {daysOfWeek.map((day) => (
-                            <Button
-                                key={day}
-                                colorScheme={selectedDay === day ? 'teal' : 'gray'}
-                                onClick={() => handleDaySelect(day)}
-                            >
-                                {dayJPN(day)}
-                            </Button>
-                        ))}
-                    </HStack>
-                </FormControl>
-
-                <HStack mt={6}>
-                    <Button colorScheme="blue" onClick={handleNext}>
-                        Next
-                    </Button>
-                </HStack>
             </Box>
-        </div>
+        </Flex>
     );
 };
 

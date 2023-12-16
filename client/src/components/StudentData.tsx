@@ -8,8 +8,11 @@ import {
   Td,
   TableContainer,
   Heading,
+  Flex,
+  Box,
 } from '@chakra-ui/react';
 import Axios from 'axios';
+import { SideBar } from './SideBar';
 
 interface Category {
   Number: number;
@@ -42,25 +45,32 @@ const StudentData: React.FC = () => {
   });
 
   return (
-    <div>
-      <Heading color='#ececec' fontSize={100} margin={3} marginLeft={10}>
-        学生一覧
-      </Heading>
+    <Flex>
+      <SideBar />
 
-      <TableContainer marginLeft={10} marginRight={10}>
-        <Table variant='simple'>
-          <Thead>
-            <Tr>
-              <Th>Number</Th>
-              <Th>Name</Th>
-              <Th>Grade</Th>
-              <Th>Class</Th>
-            </Tr>
-          </Thead>
-          {data2}
-        </Table>
-      </TableContainer>
-    </div>
+      <Box ml="250px" p={10} flex="1">
+
+        <Box margin={10}>
+          <Heading color='#1B254A' fontSize={50} mb={10}>
+            Students
+          </Heading>
+
+          <TableContainer>
+            <Table variant='simple'>
+              <Thead>
+                <Tr>
+                  <Th>Number</Th>
+                  <Th>Name</Th>
+                  <Th>Grade</Th>
+                  <Th>Class</Th>
+                </Tr>
+              </Thead>
+              {data2}
+            </Table>
+          </TableContainer>
+        </Box>
+      </Box>
+    </Flex>
   );
 };
 
